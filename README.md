@@ -1,0 +1,1 @@
+# Contoh_soal_gemastik2024
