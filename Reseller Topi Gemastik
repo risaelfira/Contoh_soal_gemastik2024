@@ -1,0 +1,48 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int hitungProfitMaksimum(const vector<int>& hargaBeli, const vector<int>& hargaJual) {
+    int maxProfit = 0;
+    int minBeli = hargaBeli[0];
+
+    for (int i = 1; i < hargaBeli.size(); ++i) {
+        if (hargaBeli[i] < minBeli) {
+            minBeli = hargaBeli[i];
+        } else if (hargaJual[i] > minBeli) {
+            int profit = hargaJual[i] - minBeli;
+            if (profit > maxProfit) {
+                maxProfit = profit;
+            }
+        }
+    }
+
+    return maxProfit;
+}
+
+int main() {
+    int N;
+    cout << "Jumlah hari: ";
+    cin >> N;
+
+    vector<int> hargaBeli(N), hargaJual(N);
+    cout << "Masukkan harga beli: ";
+    for (int i = 0; i < N; ++i) {
+        cin >> hargaBeli[i];
+    }
+    
+    cout << "Masukkan harga jual: ";
+    for (int i = 0; i < N; ++i) {
+        cin >> hargaJual[i];
+    }
+
+    int maxProfit = hitungProfitMaksimum(hargaBeli, hargaJual);
+
+    if (maxProfit > 0) {
+        cout << maxProfit << endl;
+    } else {
+        cout << "tidak mungkin" << endl;
+    }
+
+    return 0;
+}
